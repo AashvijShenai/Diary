@@ -28,7 +28,7 @@
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:contentDescription="Menu"
                 android:paddingRight="16dp"
-                android:src="@android:drawable/ic_menu_agenda" />
+                android:src="@drawable/baseline_menu_white_24" />
         </androidx.appcompat.widget.Toolbar>
 
     <TextView
