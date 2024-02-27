@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawerLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CalendarActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:clickable="true"
+        android:focusable="true">
+
+        <TextView
+            android:id="@+id/planningText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Planning"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/selfCareText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Self care"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:paddingTop="8dp"
+            android:paddingBottom="16dp" />
+
+            <!-- TODO: Enabling this moves the entry line
+                  to the bottom but limits the number of entries -->
+<!--        <ScrollView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="0dp"-->
+<!--            android:layout_weight="1">-->
+
+            <LinearLayout
+                android:id="@+id/checklistLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+
+<!--        </ScrollView>-->
+
+        <EditText
+            android:id="@+id/editText"
+            android:layout_width="374dp"
+            android:layout_height="wrap_content"
+            android:hint="List item"
+            android:imeOptions="actionDone"
+            android:inputType="textMultiLine"
+            android:maxLines="3"
+            android:textSize="24sp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:padding="16dp" />
+
+        <ImageButton
+            android:id="@+id/addButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/ic_menu_add"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Add item"
+            android:padding="16dp"
+            android:layout_gravity="end" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floatingActionButton2"
+            android:layout_width="306dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="350dp"
+            android:layout_marginEnd="45dp"
+            android:layout_marginBottom="42dp"
+            android:clickable="true"
+            android:src="@android:drawable/ic_menu_agenda"
+            app:backgroundTint="#009688" />
+    </LinearLayout>
+
+
+    <!-- Sidebar layout -->
+    <RelativeLayout
+        android:layout_width="280dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="@android:color/white">
+
+        <!-- Content of the sidebar -->
+        <ListView
+            android:id="@+id/sidebarListView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </RelativeLayout>
+
+</androidx.drawerlayout.widget.DrawerLayout>
