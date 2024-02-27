@@ -10,10 +10,13 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.CalendarView
+import android.widget.ImageButton
 import android.widget.ListView
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.activity.compose.setContent
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -33,7 +36,7 @@ import java.text.SimpleDateFormat
 
 var initialSelectedDate = "1"
 
-class CalendarActivity : ComponentActivity() {
+class CalendarActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.calendaractivity)
@@ -72,9 +75,12 @@ class CalendarActivity : ComponentActivity() {
             journalButton.visibility = View.VISIBLE
         }
 
-        val fabMenu = findViewById<FloatingActionButton>(R.id.floatingActionButton2)
+        val toolbar: Toolbar = findViewById(R.id.toolbar)
+        val menuButton: ImageButton = findViewById(R.id.menuButton)
+        setSupportActionBar(toolbar)
+        supportActionBar?.title = ""
         val drawer = findViewById<DrawerLayout>(R.id.drawerLayout)
-        fabMenu.setOnClickListener {
+        menuButton.setOnClickListener {
             if (drawer.isDrawerOpen(GravityCompat.START)) {
                 drawer.closeDrawer(GravityCompat.START)
             } else {

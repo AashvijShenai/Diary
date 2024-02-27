@@ -16,6 +16,8 @@ import android.widget.ListView
 import android.widget.TextView
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -32,7 +34,7 @@ import org.w3c.dom.Text
 // Define a key for SharedPreferences
 private const val PREFS_KEY = "relations_plan_items_"
 
-class RelationsPlanActivity : ComponentActivity(), GestureDetector.OnGestureListener {
+class RelationsPlanActivity : AppCompatActivity(), GestureDetector.OnGestureListener {
     private lateinit var editText: EditText
     private lateinit var addButton: ImageButton
     private lateinit var checklistLayout: LinearLayout
@@ -73,9 +75,11 @@ class RelationsPlanActivity : ComponentActivity(), GestureDetector.OnGestureList
             addChecklistItem(item)
         }
 
-        val fabMenu = findViewById<FloatingActionButton>(R.id.floatingActionButton2)
+        val toolbar: Toolbar = findViewById(R.id.toolbar)
+        val menuButton: ImageButton = findViewById(R.id.menuButton)
+        setSupportActionBar(toolbar)
         val drawer = findViewById<DrawerLayout>(R.id.drawerLayout)
-        fabMenu.setOnClickListener {
+        menuButton.setOnClickListener {
             if (drawer.isDrawerOpen(GravityCompat.START)) {
                 drawer.closeDrawer(GravityCompat.START)
             } else {

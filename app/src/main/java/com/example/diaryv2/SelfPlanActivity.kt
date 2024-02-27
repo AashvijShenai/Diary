@@ -14,6 +14,8 @@ import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.ListView
 import androidx.activity.ComponentActivity
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -21,7 +23,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 // Define a key for SharedPreferences
 private const val PREFS_KEY = "self_plan_items_"
 
-class SelfPlanActivity : ComponentActivity(), GestureDetector.OnGestureListener {
+class SelfPlanActivity : AppCompatActivity(), GestureDetector.OnGestureListener {
     private lateinit var editText: EditText
     private lateinit var addButton: ImageButton
     private lateinit var checklistLayout: LinearLayout
@@ -58,9 +60,11 @@ class SelfPlanActivity : ComponentActivity(), GestureDetector.OnGestureListener 
             addChecklistItem(item)
         }
 
-        val fabMenu = findViewById<FloatingActionButton>(R.id.floatingActionButton2)
+        val toolbar: Toolbar = findViewById(R.id.toolbar)
+        val menuButton: ImageButton = findViewById(R.id.menuButton)
+        setSupportActionBar(toolbar)
         val drawer = findViewById<DrawerLayout>(R.id.drawerLayout)
-        fabMenu.setOnClickListener {
+        menuButton.setOnClickListener {
             if (drawer.isDrawerOpen(GravityCompat.START)) {
                 drawer.closeDrawer(GravityCompat.START)
             } else {
