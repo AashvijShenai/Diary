@@ -10,9 +10,12 @@ import android.view.GestureDetector
 import android.view.MotionEvent
 import android.widget.ArrayAdapter
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.ListView
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -28,7 +31,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 // Define a key for SharedPreferences
 private const val PREFS_KEY = "highs_journal_"
 
-class HighlightJournalActivity : ComponentActivity(), GestureDetector.OnGestureListener {
+class HighlightJournalActivity : AppCompatActivity(), GestureDetector.OnGestureListener {
     private lateinit var editText: EditText
     private lateinit var gestureDetector: GestureDetector
 
@@ -65,9 +68,11 @@ class HighlightJournalActivity : ComponentActivity(), GestureDetector.OnGestureL
 
         val sidebarListView = findViewById<ListView>(R.id.sidebarListView)
 
-        val fabMenu = findViewById<FloatingActionButton>(R.id.floatingActionButton2)
+        val toolbar: Toolbar = findViewById(R.id.toolbar)
+        val menuButton: ImageButton = findViewById(R.id.menuButton)
+        setSupportActionBar(toolbar)
         val drawer = findViewById<DrawerLayout>(R.id.drawerLayout)
-        fabMenu.setOnClickListener {
+        menuButton.setOnClickListener {
             if (drawer.isDrawerOpen(GravityCompat.START)) {
                 drawer.closeDrawer(GravityCompat.START)
             } else {
