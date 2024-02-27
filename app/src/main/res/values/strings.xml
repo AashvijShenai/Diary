@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Diaryv2</string>
+    <string name="title_activity_calendar">CalendarActivity</string>
+    <string name="title_activity_self_plan">SelfPlanActivity</string>
+    <string name="title_activity_highlight_journal">HighlightJournalActivity</string>
+    <string name="title_activity_relations_plan">RelationsPlanActivity</string>
+    <string name="title_activity_career_plan">CareerPlanActivity</string>
+    <string name="title_activity_low_light_journal">LowLightJournalActivity</string>
+    <string name="title_activity_thoughts_journal">ThoughtsJournalActivity</string>
+</resources>
