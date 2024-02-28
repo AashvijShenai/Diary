@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.Diaryv2" parent="Theme.MaterialComponents.Light.NoActionBar" />
+    <style name="Theme.Diaryv2" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">@color/cream</item>
+        <item name="colorPrimaryDark">@color/darkgreen</item>
+        <item name="colorAccent">@color/dustyrose</item>
+    </style>
 </resources>

@@ -44,11 +44,9 @@ class CalendarActivity : AppCompatActivity() {
         val calendarView = findViewById<CalendarView>(R.id.calendarView)
         val planButton = findViewById<Button>(R.id.buttonPlan)
         val journalButton = findViewById<Button>(R.id.buttonJournal)
-        val selectedDateTextView = findViewById<TextView>(R.id.textViewSelectedDate)
         val sidebarListView = findViewById<ListView>(R.id.sidebarListView)
 
         initialSelectedDate = "${formatDate(System.currentTimeMillis())}"
-        selectedDateTextView.text = "Selected Date: ${initialSelectedDate}"
 
         // Button click listeners
         planButton.setOnClickListener {
@@ -68,7 +66,6 @@ class CalendarActivity : AppCompatActivity() {
         calendarView.setOnDateChangeListener { view, year, month, dayOfMonth ->
             // Update selected date text
             initialSelectedDate = "${formatDate(year, month, dayOfMonth)}"
-            selectedDateTextView.text = "Selected Date: ${initialSelectedDate}"
 
             // Show or hide buttons based on date selection
             planButton.visibility = View.VISIBLE
