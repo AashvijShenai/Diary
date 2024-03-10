@@ -29,6 +29,8 @@ class SelfPlanActivity : AppCompatActivity(), GestureDetector.OnGestureListener 
     private lateinit var checklistLayout: LinearLayout
     private lateinit var gestureDetector: GestureDetector
 
+    private var selectedDate = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.selfplanactivity)
@@ -51,7 +53,7 @@ class SelfPlanActivity : AppCompatActivity(), GestureDetector.OnGestureListener 
         }
 
         // Load checklist items from SharedPreferences
-        val selectedDate = intent.getStringExtra("selected_date")
+        selectedDate = intent.getStringExtra("selected_date").toString()
         val prefs = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
         val checklistItems = prefs.getStringSet(PREFS_KEY + selectedDate, HashSet<String>())?.toList()
 
@@ -103,7 +105,6 @@ class SelfPlanActivity : AppCompatActivity(), GestureDetector.OnGestureListener 
 
         checkbox.setOnCheckedChangeListener { _, isChecked ->
             // Save the checkbox state when it changes
-            val selectedDate = intent.getStringExtra("selected_date")
             val prefs = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
             val editor = prefs.edit()
             editor.putBoolean(PREFS_KEY + selectedDate + item, isChecked)
@@ -141,7 +142,6 @@ class SelfPlanActivity : AppCompatActivity(), GestureDetector.OnGestureListener 
         checklistLayout.addView(itemLayout)
 
         // Add the item to SharedPreferences when it is added to the checklist
-        val selectedDate = intent.getStringExtra("selected_date")
         val prefs = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
         val isChecked = prefs.getBoolean(PREFS_KEY + selectedDate + item, false)
         checkbox.isChecked = isChecked
@@ -173,7 +173,6 @@ class SelfPlanActivity : AppCompatActivity(), GestureDetector.OnGestureListener 
         Log.d("Gesture", "onSingleTapUp")
         // Start RelationshipsActivity
         val intent = Intent(this, RelationsPlanActivity::class.java)
-        val selectedDate = intent.getStringExtra("selected_date")
         intent.putExtra("selected_date", selectedDate)
         startActivity(intent)
         return true

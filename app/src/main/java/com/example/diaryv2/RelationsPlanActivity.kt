@@ -40,6 +40,8 @@ class RelationsPlanActivity : AppCompatActivity(), GestureDetector.OnGestureList
     private lateinit var checklistLayout: LinearLayout
     private lateinit var gestureDetector: GestureDetector
 
+    private var selectedDate = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.selfplanactivity)
@@ -66,7 +68,7 @@ class RelationsPlanActivity : AppCompatActivity(), GestureDetector.OnGestureList
         }
 
         // Load checklist items from SharedPreferences
-        val selectedDate = intent.getStringExtra("selected_date")
+        selectedDate = intent.getStringExtra("selected_date").toString()
         val prefs = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
         val checklistItems = prefs.getStringSet(PREFS_KEY + selectedDate, HashSet<String>())?.toList()
 
@@ -116,7 +118,6 @@ class RelationsPlanActivity : AppCompatActivity(), GestureDetector.OnGestureList
 
         checkbox.setOnCheckedChangeListener { _, isChecked ->
             // Save the checkbox state when it changes
-            val selectedDate = intent.getStringExtra("selected_date")
             val prefs = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
             val editor = prefs.edit()
             editor.putBoolean(PREFS_KEY + selectedDate + item, isChecked)
@@ -128,8 +129,12 @@ class RelationsPlanActivity : AppCompatActivity(), GestureDetector.OnGestureList
             editText.setText(checkbox.text)
             editText.setOnKeyListener { _, keyCode, event ->
                 if (event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
-                    checkbox.text = editText.text
-                    itemLayout.removeView(editText)
+                    val newText = editText.text.toString().trim()
+                    if (newText.isNotEmpty()) {
+                        checkbox.text = newText
+                    } else {
+                        checklistLayout.removeView(itemLayout)
+                    }
                     return@setOnKeyListener true
                 }
                 false
@@ -149,7 +154,6 @@ class RelationsPlanActivity : AppCompatActivity(), GestureDetector.OnGestureList
         checklistLayout.addView(itemLayout)
 
         // Add the item to SharedPreferences when it is added to the checklist
-        val selectedDate = intent.getStringExtra("selected_date")
         val prefs = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
         val isChecked = prefs.getBoolean(PREFS_KEY + selectedDate + item, false)
         checkbox.isChecked = isChecked
@@ -181,7 +185,6 @@ class RelationsPlanActivity : AppCompatActivity(), GestureDetector.OnGestureList
         Log.d("Gesture", "onSingleTapUp")
         // Start RelationshipsActivity
         val intent = Intent(this, CareerPlanActivity::class.java)
-        val selectedDate = intent.getStringExtra("selected_date")
         if (selectedDate != null) {
             Log.d("Activity", selectedDate)
         }
