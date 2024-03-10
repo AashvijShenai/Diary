@@ -76,7 +76,7 @@ class SelfPlanActivity : AppCompatActivity(), GestureDetector.OnGestureListener 
         val sidebarItems = arrayOf("Calendar", "Habit Tracker")
 
         // Create adapter
-        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, sidebarItems)
+        val adapter = ArrayAdapter(this, R.layout.sidebar_item_layout, R.id.sidebar_item_text, sidebarItems)
         sidebarListView.adapter = adapter
 
         sidebarListView.setOnItemClickListener { _, _, position, _ ->
@@ -98,7 +98,8 @@ class SelfPlanActivity : AppCompatActivity(), GestureDetector.OnGestureListener 
 
         val checkbox = CheckBox(this)
         checkbox.text = item
-        checkbox.textSize = 24f // Set the text size here
+        checkbox.textSize = 28f // Set the text size here
+        checkbox.setPadding(0,0,0,10)
 
         checkbox.setOnCheckedChangeListener { _, isChecked ->
             // Save the checkbox state when it changes

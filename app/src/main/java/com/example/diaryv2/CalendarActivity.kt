@@ -89,7 +89,7 @@ class CalendarActivity : AppCompatActivity() {
         val sidebarItems = arrayOf("Calendar", "Habit Tracker")
 
         // Create adapter
-        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, sidebarItems)
+        val adapter = ArrayAdapter(this, R.layout.sidebar_item_layout, R.id.sidebar_item_text, sidebarItems)
         sidebarListView.adapter = adapter
 
         sidebarListView.setOnItemClickListener { _, _, position, _ ->
