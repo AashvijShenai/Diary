@@ -7,4 +7,5 @@
     <string name="title_activity_career_plan">CareerPlanActivity</string>
     <string name="title_activity_low_light_journal">LowLightJournalActivity</string>
     <string name="title_activity_thoughts_journal">ThoughtsJournalActivity</string>
+    <string name="take_control">Take Control</string>
 </resources>
