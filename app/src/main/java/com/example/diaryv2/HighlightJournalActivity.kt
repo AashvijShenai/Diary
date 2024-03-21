@@ -34,6 +34,7 @@ private const val PREFS_KEY = "highs_journal_"
 class HighlightJournalActivity : AppCompatActivity(), GestureDetector.OnGestureListener {
     private lateinit var editText: EditText
     private lateinit var gestureDetector: GestureDetector
+    private var selectedDate = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,7 +45,7 @@ class HighlightJournalActivity : AppCompatActivity(), GestureDetector.OnGestureL
 
         editText = findViewById(R.id.highsTextBody)
 
-        val selectedDate = intent.getStringExtra("selected_date")
+        selectedDate = intent.getStringExtra("selected_date").toString()
         val prefs = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
         val savedText = prefs.getString(PREFS_KEY + selectedDate, "")
         editText.setText(savedText)
@@ -84,7 +85,7 @@ class HighlightJournalActivity : AppCompatActivity(), GestureDetector.OnGestureL
         val sidebarItems = arrayOf("Calendar", "Habit Tracker")
 
         // Create adapter
-        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, sidebarItems)
+        val adapter = ArrayAdapter(this, R.layout.sidebar_item_layout, R.id.sidebar_item_text, sidebarItems)
         sidebarListView.adapter = adapter
 
         sidebarListView.setOnItemClickListener { _, _, position, _ ->
@@ -119,7 +120,6 @@ class HighlightJournalActivity : AppCompatActivity(), GestureDetector.OnGestureL
         Log.d("Gesture", "onSingleTapUp")
         // Start RelationshipsActivity
         val intent = Intent(this, LowLightJournalActivity::class.java)
-        val selectedDate = intent.getStringExtra("selected_date")
         intent.putExtra("selected_date", selectedDate)
         startActivity(intent)
         return true

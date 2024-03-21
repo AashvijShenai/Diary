@@ -35,6 +35,7 @@ private const val PREFS_KEY = "thoughts_journal_"
 class ThoughtsJournalActivity : AppCompatActivity(), GestureDetector.OnGestureListener {
     private lateinit var editText: EditText
     private lateinit var gestureDetector: GestureDetector
+    private var selectedDate = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,8 +48,9 @@ class ThoughtsJournalActivity : AppCompatActivity(), GestureDetector.OnGestureLi
         editSubtitle.text = "Notes/Thoughts"
 
         editText = findViewById(R.id.highsTextBody)
+        editText.hint = "Anything on your mind ..."
 
-        val selectedDate = intent.getStringExtra("selected_date")
+        selectedDate = intent.getStringExtra("selected_date").toString()
         val prefs = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
         val savedText = prefs.getString(PREFS_KEY + selectedDate, "")
         editText.setText(savedText)
@@ -88,7 +90,7 @@ class ThoughtsJournalActivity : AppCompatActivity(), GestureDetector.OnGestureLi
         val sidebarItems = arrayOf("Calendar", "Habit Tracker")
 
         // Create adapter
-        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, sidebarItems)
+        val adapter = ArrayAdapter(this, R.layout.sidebar_item_layout, R.id.sidebar_item_text, sidebarItems)
         sidebarListView.adapter = adapter
 
         sidebarListView.setOnItemClickListener { _, _, position, _ ->
@@ -121,11 +123,7 @@ class ThoughtsJournalActivity : AppCompatActivity(), GestureDetector.OnGestureLi
 
     override fun onSingleTapUp(e: MotionEvent): Boolean {
         Log.d("Gesture", "onSingleTapUp")
-        // Start RelationshipsActivity
-        val intent = Intent(this, HighlightJournalActivity::class.java)
-        val selectedDate = intent.getStringExtra("selected_date")
-        intent.putExtra("selected_date", selectedDate)
-        startActivity(intent)
+
         return true
     }
 

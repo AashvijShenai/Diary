@@ -5,6 +5,7 @@
     android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg_dots"
     tools:context=".CalendarActivity">
 
     <LinearLayout
@@ -18,7 +19,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
+            android:background="@color/darkgreen"
             app:title="Planner"
             app:titleTextColor="@android:color/white"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
@@ -37,13 +38,15 @@
 
         <TextView
             android:id="@+id/selfCareText"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Self care"
-            android:textSize="18sp"
-            android:textStyle="bold"
+            android:fontFamily="casual"
             android:paddingTop="8dp"
-            android:paddingBottom="16dp" />
+            android:paddingBottom="16dp"
+            android:text="Personal"
+            android:textAlignment="center"
+            android:textSize="40sp"
+            android:textStyle="bold" />
 
             <!-- TODO: Enabling this moves the entry line
                   to the bottom but limits the number of entries -->
@@ -60,38 +63,46 @@
 
 <!--        </ScrollView>-->
 
-        <EditText
-            android:id="@+id/editText"
-            android:layout_width="374dp"
-            android:layout_height="wrap_content"
-            android:hint="List item"
-            android:imeOptions="actionDone"
-            android:inputType="textMultiLine"
-            android:maxLines="3"
-            android:textSize="24sp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:padding="16dp" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <ImageButton
-            android:id="@+id/addButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@android:drawable/ic_menu_add"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="Add item"
-            android:padding="16dp"
-            android:layout_gravity="end" />
+            <EditText
+                android:id="@+id/editText"
+                style="@style/NoUnderlineEditText"
+                android:layout_width="339dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:hint="List item"
+                android:imeOptions="actionDone"
+                android:inputType="textCapSentences|textMultiLine"
+                android:maxLines="3"
+                android:padding="16dp"
+                android:textSize="24sp" />
+
+            <ImageButton
+                android:id="@+id/addButton"
+                android:layout_width="wrap_content"
+                android:layout_height="65dp"
+                android:layout_gravity="end"
+                android:layout_marginStart="-15dp"
+                android:layout_toEndOf="@+id/editText"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Add item"
+                android:padding="16dp"
+                android:src="@drawable/add" />
+
+        </RelativeLayout>
 
     </LinearLayout>
-
 
     <!-- Sidebar layout -->
     <RelativeLayout
         android:layout_width="280dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="@android:color/white">
+        android:background="@color/cream">
 
         <!-- Content of the sidebar -->
         <ListView

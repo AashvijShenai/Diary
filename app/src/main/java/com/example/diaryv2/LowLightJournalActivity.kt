@@ -35,6 +35,7 @@ private const val PREFS_KEY = "lows_journal_"
 class LowLightJournalActivity : AppCompatActivity(), GestureDetector.OnGestureListener {
     private lateinit var editText: EditText
     private lateinit var gestureDetector: GestureDetector
+    private var selectedDate = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,11 +45,12 @@ class LowLightJournalActivity : AppCompatActivity(), GestureDetector.OnGestureLi
         gestureDetector = GestureDetector(this, this)
 
         val editSubtitle = findViewById<TextView>(R.id.highlightsText)
-        editSubtitle.text = "What could have gone better?"
+        editSubtitle.text = "Lowlights"
 
         editText = findViewById(R.id.highsTextBody)
+        editText.hint = "What could have gone better?"
 
-        val selectedDate = intent.getStringExtra("selected_date")
+        selectedDate = intent.getStringExtra("selected_date").toString()
         val prefs = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
         val savedText = prefs.getString(PREFS_KEY + selectedDate, "")
         editText.setText(savedText)
@@ -88,7 +90,7 @@ class LowLightJournalActivity : AppCompatActivity(), GestureDetector.OnGestureLi
         val sidebarItems = arrayOf("Calendar", "Habit Tracker")
 
         // Create adapter
-        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, sidebarItems)
+        val adapter = ArrayAdapter(this, R.layout.sidebar_item_layout, R.id.sidebar_item_text, sidebarItems)
         sidebarListView.adapter = adapter
 
         sidebarListView.setOnItemClickListener { _, _, position, _ ->
@@ -123,7 +125,6 @@ class LowLightJournalActivity : AppCompatActivity(), GestureDetector.OnGestureLi
         Log.d("Gesture", "onSingleTapUp")
         // Start RelationshipsActivity
         val intent = Intent(this, ThoughtsJournalActivity::class.java)
-        val selectedDate = intent.getStringExtra("selected_date")
         intent.putExtra("selected_date", selectedDate)
         startActivity(intent)
         return true

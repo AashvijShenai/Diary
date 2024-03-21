@@ -5,6 +5,7 @@
     android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/cream"
     tools:context=".CalendarActivity">
 
     <RelativeLayout
@@ -15,7 +16,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
+            android:background="@color/darkgreen"
             app:titleTextColor="@android:color/white"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
             app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
@@ -30,16 +31,6 @@
                 android:paddingRight="16dp"
                 android:src="@drawable/baseline_menu_white_24" />
         </androidx.appcompat.widget.Toolbar>
-  
-    <TextView
-        android:id="@+id/textViewSelectedDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Selected Date:"
-        android:textSize="16sp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="16dp"/>
 
         <Button
             android:id="@+id/buttonPlan"
@@ -51,6 +42,7 @@
             android:layout_marginTop="30dp"
             android:layout_marginEnd="8dp"
             android:text="Plan"
+            android:backgroundTint="@color/darkgreen"
             android:visibility="gone" />
 
         <Button
@@ -63,15 +55,18 @@
             android:layout_marginTop="30dp"
             android:layout_marginEnd="50dp"
             android:text="Journal"
+            android:backgroundTint="@color/darkgreen"
             android:visibility="gone" />
 
         <CalendarView
-        android:id="@+id/calendarView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/textViewSelectedDate"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"/>
+            android:id="@+id/calendarView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/toolbar"
+            android:layout_centerHorizontal="true"
+            android:weekDayTextAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:dateTextAppearance="@style/TextAppearance.AppCompat.Large"
+            android:layout_marginTop="20dp"/>
 
     </RelativeLayout>
 
@@ -80,7 +75,7 @@
         android:layout_width="280dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="@android:color/white">
+        android:background="@color/cream">
 
         <!-- Content of the sidebar -->
         <ListView
